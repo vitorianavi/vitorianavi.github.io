@@ -21,3 +21,7 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--primary"
 ---
+
+{% include feature_row id="intro" type="center" %}
+
+{% include feature_row %}
