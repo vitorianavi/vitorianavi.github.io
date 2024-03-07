@@ -118,6 +118,7 @@ html {
   position: fixed;
   right: 4vw;
   top: 3vh;
+  z-index: 1000;
 }
 
 .navbar ul {
