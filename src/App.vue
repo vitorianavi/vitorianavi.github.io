@@ -15,7 +15,7 @@
       <ContentSection id="sectionPhoto" :sectionTitleText="photoSectionText" :imgLeftPath="photoImgLeft" :imgRightPath="photoImgRight"/>
       <ContentSection id="sectionTattoo" :sectionTitleText="tattooSectionText" :imgLeftPath="tattooImgLeft" :imgRightPath="tattooImgRight"/>
       <div id="sectionAbout" class="section">
-        <PromptText :text="aboutSectionText"/>
+        <PromptText class="title" :text="aboutSectionText"/>
       </div>
     </div>
     <Sketch id="sketch"/>
@@ -38,11 +38,11 @@ export default {
     return {
       mainSectionText: "Hello,\nI'm Ana Vitoriano.",
       photoSectionText: "photography",
-      photoImgLeft: "./public/assets/DSC_0225.jpg",
-      photoImgRight: "./public/assets/DSC_9856.jpg",
+      photoImgLeft: "./assets/DSC_0225.jpg",
+      photoImgRight: "./assets/DSC_9856.jpg",
       tattooSectionText: "tattoo",
-      tattooImgLeft: "./public/assets/tattoo1.png",
-      tattooImgRight: "./public/assets/tattoo2.png",
+      tattooImgLeft: "./assets/tattoo1.png",
+      tattooImgRight: "./assets/tattoo2.png",
       aboutSectionText: "about me"
     };
   },
@@ -82,11 +82,6 @@ html {
 #main {
   max-width: 100%;
   position: absolute;
-}
-
-.navbar {
-  position: fixed;
-  z-index: 1000;
 }
 
 #sketch {
@@ -141,10 +136,6 @@ html {
   text-decoration: none;
   font-family:'Roboto Mono';
   font-size: 1.5vw;
-}
-
-.imgContent {
-  background-image: url('./assets/first_page.jpg');
 }
 
 </style>
