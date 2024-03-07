@@ -9,26 +9,33 @@ on:
   pull_request:
     branches: [ "master" ]
 
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install Packages and Build Application
-      run: |
-        npm ci
-        npm run build
+        node-version: 20
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact
@@ -37,18 +44,14 @@ jobs:
         # Upload dist repository
         path: './dist'
   deploy:
-      name: Deploy application
-      needs: build
-      permissions:
-        pages: write
-        id-token: write
+    name: Deploy application
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-
-      runs-on: ubuntu-latest
-      steps:
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v2
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
