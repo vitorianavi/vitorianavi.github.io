@@ -39,11 +39,12 @@ const props = defineProps({
 .img{
     background-repeat: no-repeat;
     background-size: contain;
-    transition: filter 0.8s ease;
+    filter: grayscale(20);
+    transition: filter 0.5s ease;
 }
 
 .img:hover {
-    filter: hue-rotate(30deg);
+    filter: grayscale(0);
     cursor: pointer;
 }
 
