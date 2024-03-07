@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, defineProps, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, defineProps } from 'vue';
 
 const props = defineProps({
     text: String
@@ -37,18 +37,11 @@ onMounted(() => {
 onBeforeUnmount(() => {
     clearInterval(typingInterval);
 });
-
-const animatedTextLines = computed(() => {
-  return animatedText.value.split('\n');
-});
 </script>
 
 <style>
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     color: white;
     font-family:'Roboto Mono';
 }
@@ -59,7 +52,7 @@ const animatedTextLines = computed(() => {
 }
 
 .text {
-    white-space: pre-line;
+    white-space: pre;
     text-align: center;
 }
 

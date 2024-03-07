@@ -10,14 +10,20 @@ onMounted(() => {
 
     let ax = [];
     let ay = [];
+
+    let currentVisibleTop;
+    let currentVisibleBottom;
+
     const sketch = (p5) => {
         p5.setup = () => {
-            p5.createCanvas(p5.windowWidth, p5.windowHeight);
+            let canvasWidth = p5.windowWidth;
+            let canvasHeight = p5.windowHeight*4;
+            p5.createCanvas(canvasWidth, canvasHeight);
             for ( let i = 0; i < num; i++ ) {
-                ax[i] = p5.windowWidth / 2;
+                ax[i] = canvasWidth / 2;
                 ay[i] = p5.windowHeight / 2;
             }
-            p5.frameRate(30);
+            p5.frameRate(15);
         }
 
         p5.draw = () => {
@@ -31,9 +37,12 @@ onMounted(() => {
             ax[num - 1] += p5.random(-range, range);
             ay[num - 1] += p5.random(-range, range);
 
-            // Constrain all points to the screen
+            let visibleTop = p5.max(0, window.scrollY);
+            let visibleBottom = window.scrollY + p5.windowHeight;
+
+            // Constrain all points to the visible screen
             ax[num - 1] = p5.constrain(ax[num - 1], 0, p5.windowWidth);
-            ay[num - 1] = p5.constrain(ay[num - 1], 0, p5.windowHeight);
+            ay[num - 1] = p5.constrain(ay[num - 1], visibleTop, visibleBottom);
 
             // Draw a line connecting the points
             for ( let j = 1; j < num; j++ ) {
@@ -44,7 +53,7 @@ onMounted(() => {
             }
         }
     }
-    const newP5 = new p5(sketch, canvas.value)
+    const newP5 = new p5(sketch, canvas.value);
 })
 </script>
 
