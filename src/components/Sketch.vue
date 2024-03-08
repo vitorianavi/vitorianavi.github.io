@@ -5,7 +5,7 @@ import p5 from "p5"
 const canvas = ref()
 
 onMounted(() => {
-    let num = 2000;
+    let num = 500;
     let range = 20;
 
     let ax = [];

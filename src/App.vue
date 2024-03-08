@@ -106,10 +106,11 @@ html {
 #sectionStart {
   display: table;
   margin-left: 5vw;
+  width: 100vw;
 }
 
 .mainTitle {
-  font-size: 3vw;
+  font-size: 5vh;
   vertical-align: middle;
   display: table-cell;
 }

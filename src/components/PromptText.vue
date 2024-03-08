@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
 }
 
 .text {
-    white-space: pre;
+    white-space: pre-wrap;
     text-align: center;
 }
 
